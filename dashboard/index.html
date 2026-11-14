@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied launch value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header>
+  <div>
+    <h1>TOKEN RADAR <span class="v">v3</span></h1>
+    <p class="sub">Every protocol that <b>records no token</b>, ranked by what its token would be worth if the record stayed as it is. Not a prediction of whether or when a token launches.</p>
+  </div>
+  <div id="stats" class="stats"></div>
+</header>
+<main id="view"></main>
+<section id="howto">
+  <h2>HOW A ROW IS VALUED</h2>
+  <p id="formula" class="formula"></p>
+  <div class="howgrid">
+    <div id="fitnotes"></div>
+    <div id="scatter"></div>
+  </div>
+  <p class="fine">No name is special-cased. Every number above is fitted at runtime from the snapshot itself: the curve from the 128 protocols that record a token, the category effect shrunk with 4 pseudo-comparables, the age and growth factors from each protocol's own listed date and 7-day change. A protocol's implied value is this entry's model, not a claim by the data source.</p>
+</section>
+<section id="method">
+  <h2>MODEL &amp; LIMITS — READ THIS BEFORE YOU FARM</h2>
+  <div class="cols">
+    <div>
+      <h3>What the model uses</h3>
+      <ul>
+        <li><b>TVL</b> — the protocol's total value locked, from the snapshot.</li>
+        <li><b>Size curve</b> — bigger protocols trade at lower mcap/TVL; the curve is fitted, not assumed.</li>
+        <li><b>Category effect</b> — shrunk toward zero, so one odd comparable cannot set a whole category.</li>
+        <li><b>Age without a token</b> — longer un-tokenised runs score higher, up to 730 days.</li>
+        <li><b>7-day growth</b> — rising TVL lifts the value, falling TVL cuts it, both clamped.</li>
+        <li><b>Kin discount ×0.5</b> — a sibling protocol (same family word, smaller value) is worth half its curve value: one family, one launch.</li>
+        <li><b>Farm verdict</b> — a triage on launch size: top 10 by implied value are worth a ticket, ranks 11–50 are thin, the rest too small for a standard ticket. The slice-per-$1K column shows the dilution on the biggest launches alongside it.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What the model gets wrong</h3>
+      <ul>
+        <li>It has no fees, revenue, users or funding data — the snapshot carries none — so a loud protocol and a quiet one with the same TVL score the same.</li>
+        <li>Market cap here is circulating mcap, not fully diluted value; a launch's FDV is usually higher.</li>
+        <li>“Records no token” is a record, not proof: a protocol on this board may already have a token its record misses.</li>
+        <li>Curators and capital allocators (Risk Curators, Onchain Capital Allocator) are vault managers, not standalone protocols; their launch is the least certain shape on this board, and the P25–P75 range says so.</li>
+        <li>The range is wide on purpose — the median comparable is mis-priced ×3.40 by the curve. Treat every point value as the middle of a wide range.</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Category multiples (same-category comparables that record a token)</h3>
+  <div id="compcats"></div>
+  <p class="fine">Board rows: <span id="match"></span> · Farm economics assume 7.5% of an implied value reaches farmers; gas and ticket figures are the builder's Nov 2026 estimates, not snapshot data. Nothing here promises an airdrop. Verify every address from the protocol's own docs and never share a seed phrase.</p>
+</section>
+<footer><p>Token Radar v3 · snapshot <span id="asof"></span> · DefiLlama protocols snapshot · 758 protocols scanned · 40 on the watchlist · 416 already trade a token · 145 set aside by rule</p></footer>
+<script src="data.js"></script>
+<script src="farm.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
